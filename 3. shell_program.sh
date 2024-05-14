@@ -88,4 +88,3 @@ else
 echo "file : $fi_count"
 echo "dic : $di_count"
 echo "other : $count"
-
