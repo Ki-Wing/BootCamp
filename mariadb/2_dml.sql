@@ -6,7 +6,7 @@ select * from table명;
 select * from schema명.table명;
 
 -- table 제약 조건 조회
-select * from information_schema.key_column_usage where table_name=table명;
+SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'post';
 
 -- update [table명] set 컬럼먕=데이터, 컬럼먕1=데이터1 where id=1
     -- wherer문 없으면 모든 data update 적용됨
