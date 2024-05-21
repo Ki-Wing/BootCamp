@@ -37,12 +37,5 @@ update author set id=101 where id=1;
 select * from post;
 
 
-
-
-
-
-
-
-
-
-
+-- index별도로 제거 // 제약 조건 제거 시 남아있응게
+ALTER TABLE post  DROP INDEX post_author_fk;

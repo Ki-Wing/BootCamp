@@ -78,6 +78,10 @@ select convert('20240517', date) date;
 select date_format('2024-05-17 14:40:23', '%y-%m-%d');
 select id, date_format(created_time, '%y-%m') as date from post;
 
+-- 05, 08 이런게 아니라 한 자릿수(0 땔때)
+-- int 대신 unsigned 또는 signed사용
+select cast(date_format(created_time,"%m") as unsigned) date from post;    --unsigned : 음수 x
+
 select * from post where date_format(created_time, '%y')='24';
 
 -- 오늘의 시간
