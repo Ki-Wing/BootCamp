@@ -36,8 +36,4 @@ select a.name from author as a order by id desc limit 1;
 -- null 조회 조건
 select * from post where author_id is not null;   # is null
 
--- type
-
-
-
 
