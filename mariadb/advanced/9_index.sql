@@ -70,5 +70,3 @@ show index from author;
 select * from author where email='ynlee9999@naver.com'; -- index 생성 훟 0초 걸림
     --data 추가할떄마다 index페이지도 데이터 추가해야함 (목차잉게)
     
-
-

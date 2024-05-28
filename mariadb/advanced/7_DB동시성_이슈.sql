@@ -19,7 +19,6 @@ commit;
     -- 터미널에서 아래 insert문 실행
     insert into author(title) values("hun");
 
-
 -- lost update 이슈를 해결하기 위한 공유락 (shared lock)
 -- 1) 워크밴치에서 코드 실행
 start transaction;
