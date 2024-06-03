@@ -158,6 +158,7 @@ while true;do
 done
 redis-cli zrevrange recent products 0 4
 
+
 # hashes
     # 해당 자료구조에서는 문자, 숫자가 구분
 hset product:1 name "apple" price 1000 stock 50

@@ -56,7 +56,7 @@ else
 fi
 
 # for문 활용한 count 세기
-ㅑcount=0
+count=0
 for i in {1..100}
 do
     ((count++))

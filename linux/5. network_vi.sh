@@ -11,7 +11,7 @@ ping
 
 # 넷켓 패스체크
 # TCP/UDP 프로토콜을 사용하는 네트워크 환경에서 데이터를 읽고 씀
-nc-zv naver.com 443
+nc-zv naver.com 443  # telnet도 가능
 
 # 현재 서버에 연결된 네트워크 정보 출력
 netstat
