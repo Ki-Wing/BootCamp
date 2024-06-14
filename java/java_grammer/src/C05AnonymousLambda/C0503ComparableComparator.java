@@ -39,16 +39,50 @@ public class C0503ComparableComparator {
 //        Collections.sort(students); //뭘로 정렬해야할지 모르니까 에러나는겨
 //        방법1) Student 객체에서 Comparable를 구현 => compareTo 메서드를 오버라이딩
         System.out.println(students); //메모리 주소값이 나오는거임
-
+//        Collecions.sort(students)
         for(Student o : students){
 //            System.out.println(s.getAge());
             System.out.println(o.getName());
         }
+//        방법2) Comparator를 구현한 익명객체를 srot에 주입
+        Comparator<Student> com = new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return o1.getAge() - o2.getAge();  //오름차순
+            }
+        };
+        // 위에 코드를 람다로 만든거임
+        Comparator<Student>  ex = (a,b) -> a.getAge() - b.getAge();
+        // 위보다 더 간단하게
+        students.sort(( (a,b) -> a.getAge() - b.getAge())); 
+        for(Student o : students){
+//            System.out.println(s.getAge());
+            System.out.println(o.getName());
+        } //naturalOrder()
 
+        
+        // 문자열 길이대로 내림차순 정렬
+        String[] stArr = {"hello", "java", "C++", "world2"};
+//        Arrays.sort(stArr, Comparator.reverseOrder());
+        Arrays.sort(stArr, (s1, s2) -> Integer.compare(s2.length(), s1.length()));
+//        Arrays.sort(stArr, (s1, s2) -> s2.length() - s1.length());  // 이게 더 간단하고 쉬움
+        System.out.println(Arrays.toString(stArr));
+
+
+        // [4,5], [1,2], [5,0], [3,1] 기준으로 배열을 내림차순 정렬(배열에 0번째가 아닌 1번째를 기준으로)
+        // 만약에 1번째가 같으면 0번째로 내림차순
+        List<int[]> myList = new ArrayList<>(Arrays.asList(new int[]{4, 5}, new int[]{1, 2},
+                new int[]{5, 0}, new int[]{3, 1}));
+        myList.sort((a, b) -> b[1] - a[1]);
+        myList.forEach(arr -> System.out.println(Arrays.toString(arr)));
     }
 }
 
-class Student implements Comparable<Student>{
+
+
+//class Student implements Comparable<Student>{
+class Student{
+
     String name;
     int age;
 
@@ -64,13 +98,21 @@ class Student implements Comparable<Student>{
     public int getAge() {
         return age;
     }
+    
+    // 모든 class의 조상 class인 object class의 toString 메서드를 오버라이드함
+    // 객체 호출시에 자동으로 toString메서드 호출
 
     @Override
-    public int compareTo(Student o) {
-//        return this.age - o.getAge(); //반대로하면 정렬 바뀜
-//        return this.name.compareTo(o.getName());
-        return o.getName().compareTo(this.name);
+    public String toString(){
+        return "이름 : " + this.name + ", 나이 : " + this.age + "\n";
     }
+
+//    @Override
+//    public int compareTo(Student o) {
+////        return this.age - o.getAge(); //반대로하면 정렬 바뀜
+////        return this.name.compareTo(o.getName());
+//        return o.getName().compareTo(this.name);
+//    }
 }
 
 
