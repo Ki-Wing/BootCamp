@@ -29,52 +29,87 @@ public class C0503ComparableComparator {
 //        my.sort(Comparator.reverseOrder());
 
 
-//        student 객체 5개 생성
-        List<Student> students = new ArrayList<>();
-        students.add(new Student("test1",24));
-        students.add(new Student("test2",25));
-        students.add(new Student("test3",22));
-        students.add(new Student("test4",21));
-        students.add(new Student("test5",22));
-//        Collections.sort(students); //뭘로 정렬해야할지 모르니까 에러나는겨
-//        방법1) Student 객체에서 Comparable를 구현 => compareTo 메서드를 오버라이딩
-        System.out.println(students); //메모리 주소값이 나오는거임
-//        Collecions.sort(students)
-        for(Student o : students){
-//            System.out.println(s.getAge());
-            System.out.println(o.getName());
-        }
-//        방법2) Comparator를 구현한 익명객체를 srot에 주입
-        Comparator<Student> com = new Comparator<Student>() {
-            @Override
-            public int compare(Student o1, Student o2) {
-                return o1.getAge() - o2.getAge();  //오름차순
+////        student 객체 5개 생성
+//        List<Student> students = new ArrayList<>();
+//        students.add(new Student("test1",24));
+//        students.add(new Student("test2",25));
+//        students.add(new Student("test3",22));
+//        students.add(new Student("test4",21));
+//        students.add(new Student("test5",22));
+////        Collections.sort(students); //뭘로 정렬해야할지 모르니까 에러나는겨
+////        방법1) Student 객체에서 Comparable를 구현 => compareTo 메서드를 오버라이딩
+//        System.out.println(students); //메모리 주소값이 나오는거임
+////        Collecions.sort(students)
+//        for(Student o : students){
+////            System.out.println(s.getAge());
+//            System.out.println(o.getName());
+//        }
+////        방법2) Comparator를 구현한 익명객체를 srot에 주입
+//        Comparator<Student> com = new Comparator<Student>() {
+//            @Override
+//            public int compare(Student o1, Student o2) {
+//                return o1.getAge() - o2.getAge();  //오름차순
+//            }
+//        };
+//        // 위에 코드를 람다로 만든거임
+//        Comparator<Student>  ex = (a,b) -> a.getAge() - b.getAge();
+//        // 위보다 더 간단하게
+//        students.sort(( (a,b) -> a.getAge() - b.getAge()));
+//        for(Student o : students){
+////            System.out.println(s.getAge());
+//            System.out.println(o.getName());
+//        } //naturalOrder()
+//
+//
+//        // 문자열 길이대로 내림차순 정렬
+//        String[] stArr = {"hello", "java", "C++", "world2"};
+////        Arrays.sort(stArr, Comparator.reverseOrder());
+//        Arrays.sort(stArr, (s1, s2) -> Integer.compare(s2.length(), s1.length()));
+////        Arrays.sort(stArr, (s1, s2) -> s2.length() - s1.length());  // 이게 더 간단하고 쉬움
+//        System.out.println(Arrays.toString(stArr));
+//
+//
+//        // [4,5], [1,2], [5,0], [3,1] 기준으로 배열을 내림차순 정렬(배열에 0번째가 아닌 1번째를 기준으로)
+//        // 만약에 1번째가 같으면 0번째로 내림차순
+//        List<int[]> myList = new ArrayList<>(Arrays.asList(new int[]{4, 5}, new int[]{1, 2},
+//                new int[]{5, 0}, new int[]{3, 1}));
+//        myList.sort((a, b) -> b[1] - a[1]);
+//        myList.forEach(arr -> System.out.println(Arrays.toString(arr)));
+
+
+//        //pq 글자 길이, 내림차순
+//        String[] stArr1 = {"hello", "java", "C++", "world2"};
+//        Queue<String> pq = new PriorityQueue<>((s1, s2) -> s2.length() - s1.length());
+//
+//        for(String s : stArr1){
+//            pq.add(s);
+//        }
+//
+//        while(!pq.isEmpty()){
+//            System.out.println(pq.poll());
+//        }
+
+
+
+//thread 구현 방법 : 쓰레드상속, runnable 주입
+//            runnable 인터페이스 주입을 통한 쓰레드 생성
+        Thread t1 = new Thread(new Runnable() {
+            public void run() {
+                System.out.println("쓰레드 1입니다.");
             }
-        };
-        // 위에 코드를 람다로 만든거임
-        Comparator<Student>  ex = (a,b) -> a.getAge() - b.getAge();
-        // 위보다 더 간단하게
-        students.sort(( (a,b) -> a.getAge() - b.getAge())); 
-        for(Student o : students){
-//            System.out.println(s.getAge());
-            System.out.println(o.getName());
-        } //naturalOrder()
-
+        });
+        t1.start(); // 쓰레드 시작
         
-        // 문자열 길이대로 내림차순 정렬
-        String[] stArr = {"hello", "java", "C++", "world2"};
-//        Arrays.sort(stArr, Comparator.reverseOrder());
-        Arrays.sort(stArr, (s1, s2) -> Integer.compare(s2.length(), s1.length()));
-//        Arrays.sort(stArr, (s1, s2) -> s2.length() - s1.length());  // 이게 더 간단하고 쉬움
-        System.out.println(Arrays.toString(stArr));
+        //위에랑 동일한데 람다로 바꾼거임
+        Thread t2 = new Thread( () ->
+            System.out.println("새로 생성한 객체입니다."));
+        t2.start(); // 쓰레드 시작
 
+        //위에랑 동일하게
+        new Thread(() ->  System.out.println("새로 생성한 객체입니다.")).start();
+        System.out.println("main 쓰레드 입니다");
 
-        // [4,5], [1,2], [5,0], [3,1] 기준으로 배열을 내림차순 정렬(배열에 0번째가 아닌 1번째를 기준으로)
-        // 만약에 1번째가 같으면 0번째로 내림차순
-        List<int[]> myList = new ArrayList<>(Arrays.asList(new int[]{4, 5}, new int[]{1, 2},
-                new int[]{5, 0}, new int[]{3, 1}));
-        myList.sort((a, b) -> b[1] - a[1]);
-        myList.forEach(arr -> System.out.println(Arrays.toString(arr)));
+//        위에 코드들 돌리면 쓰레드는 4개임(t1,t2,t3, 기본적으로 돌아가는거)
     }
 }
 
