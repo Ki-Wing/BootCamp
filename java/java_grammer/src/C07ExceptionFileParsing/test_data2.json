@@ -1,0 +1,19 @@
+[{
+  "id" : 1,
+  "name" : "김아무개",
+  "classNumber" : "1",
+  "city" : "서울"
+
+},{
+  "id" : 2,
+  "name" : "이아무개",
+  "classNumber" : "3",
+  "city" : "서울"
+
+},{
+  "id" : 1,
+  "name" : "박아무개",
+  "classNumber" : "1",
+  "city" : "인천"
+
+}]
