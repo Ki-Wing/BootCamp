@@ -31,7 +31,7 @@ public class MainClass {
 
 
         }
-        System.out.println("최종적으로 남은 수량" + Library.bookcnt);
+        System.out.println("최종적으로 1541은 수량" + Library.bookcnt);
 
     }
 
