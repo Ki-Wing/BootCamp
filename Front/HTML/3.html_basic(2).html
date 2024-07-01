@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <H2>회원가입 FORM 예제</H2>
+    <!-- 제출할 서버의 url 주소를 action에 입력 -->
+     <!-- 기본 encoding 형식(text만) : application/x-www-form-urlencoded -->
+      <!-- form에 파일까지 포함하는 경우 multipart/form-data 사용 -->
+    <FORM action="http:localhost:8080" method="post" enctype="multipart/form-data"> 
+        <div>
+            <!-- label의 for는 input의 id를 찾아 mapping -->
+            <label for="userName">Name</label>
+            <!-- input에 name은 필수// 폼 데이터가 서버로 전송될 때 각 데이터의 항목을 식별하는데 사용 -->
+            <input type="text" id="userName" name="name" size="5" maxlength="10">
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" size="20" maxlength="20" >
+        </div>
+
+        <div>
+            <label for="address">address</label>
+            <!-- value : 초기값 setting    readonly : 읽기만 하도록  -->
+            <input type="text" id="address" name="address" size="20" maxlength="20" value="서울특별시 신대방동" readonly>
+        </div>
+
+        <div>
+            <label for="passwd">Password</label>
+            <input type="password" id="passwd" name="passwd" size="20" maxlength="20">
+        </div>
+
+        <div>
+            <label for="gender">Gender</label>
+            <input type="radio" id="gender" name="gender" value="male" checked> M
+            <input type="radio" id="gender" name="gender" value="female"> F
+        </div>
+
+        
+        <div>
+            <label for="Interest">Interest</label>
+            <input type="checkbox" id="Interest" name="Interest" value="sports"> sports
+            <input type="checkbox" id="Interest" name="Interest" value="music"> music
+            <input type="checkbox" id="Interest" name="Interest" value="book"> book
+        </div>
+        <div>
+            <label for="birth">Birth:
+                <input type="datetime-local"
+                    id="birth"
+                    name ="birth"
+                    max="2077-06-20T21:00"
+                    min="1950-01-01T12:30"
+                    value="2024-07-02T13:27">
+            </label>
+        </div>
+
+        <div>
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="0" max="180"> 
+        </div>
+
+
+
+        <div>
+            <label for="userSelect">Select</label>
+            <select name="userinfo" id="">
+                <option value="admin">Admin</option>
+                <option value="user" selected="selected">User</option>
+                <option value="guest">Guest</option>
+            </select>
+
+        </div>
+
+        <div>
+            <label for="color">Color</label>
+            <input type="color" name="color">
+        </div>
+
+        <div>
+            <label for="image">ID Photo</label>
+            <input type="file" name="image" accept="image/*">
+        </div>
+
+         <div>
+            <label for="resume">Resume</label> <br>
+            <textarea type="" name="resume" id="resume" rows="5" cols="30" placeholder="자기소개를 작성해주세요."> </textarea>
+         </div>
+
+         
+        <div>
+            <input type="submit" value="회원가입 완료">
+            <!-- input, button 둘다 submit으로 같은 기능을 하지만 버튼태그에 디자인 다양성이 있음 -->
+            <button type="submit">회원가입 완료</button>
+         </div>
+    </FORM>
+</body>
+</html>

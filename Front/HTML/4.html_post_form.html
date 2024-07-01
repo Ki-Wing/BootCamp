@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <body>
+글쓰기 form 생성 실습
+제목, 내용 입력(사이즈 넉넉하게)
+예약여부(yes or no -> radio, 예약 등록 시간) -->
+    <h2>글쓰기 FROM 생성 실습</h2>
+    <FORM action="http:localhost:8080" method="post" enctype="multipart/form-data"> 
+
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" size="20" maxlength="20">
+        </div>
+
+        <div>
+            <label for="Contents">Contents</label> <br>
+            <textarea type="" name="Contents" id="Contents" rows="5" cols="30" placeholder="내용을 작성해주세요."> </textarea>
+         </div>
+
+         
+        <div>
+            <label for="Reservation">Reservation</label>
+            <input type="radio" id="Reservation" name="Reservation" value="y" checked> yes
+            <input type="radio" id="Reservation" name="Reservation" value="n"> no
+        </div>
+
+        <div>
+            <label for="Reservation_t">Reservation Time:
+                <input type="datetime-local"
+                    id="Reservation_t"
+                    name ="Reservation_t"
+                    max="2024-10-31T21:00"
+                    min="2024-07-02T15:30"
+                    value="2024-07-02T15:30">
+            </label>
+        </div>
+
+        <div>
+             <button type="submit">회원가입 완료</button>
+         </div>
+    </FORM>
+    
+</body>
+</html>

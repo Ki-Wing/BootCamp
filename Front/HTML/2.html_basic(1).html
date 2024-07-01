@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html Basic 1</title>
+    <!-- 여기에 적는 것을 내부 스타일링 
+     ex) <style></style> -->
+</head>
+<!-- body 안에 쓰는 것을 인라인 스타일링 -->
+<!-- <body style="background-color: black"> -->
+<!-- <body background="images/background_image.jpeg"> -->
+<body>
+    <h2>글자 styling 예제</h2>
+    <!-- 인라인 스타일링 -->
+    <p style="background-color: red;">1.배경색 변경</p>
+    <p style="color: blue;">2.글자색 변경</p>
+    <p style="font-size: 20px;">3.글자크기 변경</p>
+    <p style="background-color: black; font-size: 25px; text-align: center; color: white;">4.복합 스타일링</p>
+    
+    <h2>link와 이미지 삽입</h2>
+    <!-- _blank 는 새탭, _self 가 디폴트 -->
+    <div><a href="https://naver.com" target="_blank">네이버</a></div>
+
+    <div>
+        <a href="https://naver.com" target="_blank"> 
+            <!-- alt는 이미지가 깨졌을 때 나오는 대체문자열, 시각장애인용 reader기에서 인식-->
+            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA5MDZfMzAg%2FMDAxNjMwODg0NDMyNzY3.J6W5UzUJ_fIjPKwbg4Cguf1WRDEiHEe-hxrPuc4ONrcg.DoeEZeRMc7aBe7-rmBhVvxoRttkqkyRMjrkCoroND5Mg.GIF.01073550133%2FKakaoTalk_20210905_225433586.gif&type=sc960_832_gif" 
+            width="400px" height="300px" style="border: 3px solid black;" alt="먼치킨고양이">
+        </a>
+    </div>
+
+    <h2>리스트(ol(ordered list)-순서가 있는, ul(unordered list)-순서가 없는)</h2>
+    <ol style="list-style-type: upper-roman;">
+        <li>아이템A</li>
+        <li>아이템B</li>
+        <li>아이템C</li>
+    </ol>
+
+    <ul style="list-style-type: square;">
+        <li>아이템A</li>
+        <li>아이템B</li>
+        <li>아이템C</li>
+    </ul>
+
+    <h2>테이블 예제</h2>
+    <table border="1" style="border-collapse: collapse;">
+        <caption>테이블명</caption>
+        <thead>
+            <tr>
+                <th>컬럼1</th>
+                <th>컬럼2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>내용1</td>
+                <td>내용2</td>
+            </tr>
+            <tr>
+                <td>내용A</td>
+                <td>내용B</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- 테이블 만들기 실습 -->
+     <!-- 테이블명은 post : id, title, contentes, author_email
+     요소와 데이터를 가진 테이블 생성 -->
+    <table border="1" style="border-collapse: collapse; " >
+        <caption>post</caption>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>contents</th>
+                <th>author_email</th>
+            </tr>
+        </thead>
+        <tbody style="text-align: center;">
+            <tr>
+                <td>1</td>
+                <td>가</td>
+                <td>나</td>
+                <td>다</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

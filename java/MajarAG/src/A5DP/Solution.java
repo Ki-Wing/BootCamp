@@ -1,33 +1,47 @@
 package A5DP;
 
+import java.io.*;
+import java.util.*;
+
+// 38%까지 감
 public class Solution {
-    public static void main(String[] args) {
-        int m = 4;
-        int n = 3;
-        int[][] puddles = {{2, 2}};
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
 
-        System.out.println(solution(m, n, puddles));
-    }
-    public static int solution(int m, int n, int[][] puddles) {
-        int[][] maze = new int[n][m];
+        int[] arr = new int[n];
+        int[] result = new int[n];
 
-        for (int[] p : puddles) {
-            maze[p[1]-1][p[0]-1] = -1;
-        }
-
-        maze[0][0] = 1;
-
+        StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (maze[i][j] == -1) {
-                    maze[i][j] = 0;
-                    continue;
-                }
-                if (i > 0) maze[i][j] += maze[i-1][j];
-                if (j > 0) maze[i][j] += maze[i][j-1];
-                maze[i][j] %= 1000000007;
-            }
+            arr[i] = Integer.parseInt(st.nextToken());
         }
-        return maze[n-1][m-1];
+
+        for (int i = n - 1; i >= 0; i--) {
+            int init = -1;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] > arr[i]) {
+                    init = arr[j];
+                    break;
+                } else if (result[j] > arr[i]) {
+                    init = result[j];
+                    break;
+                }
+            }
+            result[i] = init;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append(result[i]).append(" ");
+        }
+        System.out.println(sb.toString());
+
+        for( int i : result){
+            System.out.println(i + " ");
+        }
+
+
+
     }
 }
