@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Author Register</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(270deg, #a2ff00, #6d05f4, #ff7e5f);
+            background-size: 1000% 100%;
+            animation: gradientBackground 2s ease infinite;
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <object style="width: 100%;" data="header.html" type="text/html"></object>
+
+    <div class="container mt-5">
+        <div class="page-header"><h2>회원 가입</h2></div>
+        <form action="" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" class="form-control" id="email" placeholder="이메일을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="role">사용자 권한</label>
+                <select class="form-control" id="role">
+                    <option value="admin">관리자</option>
+                    <option value="user" selected>일반유저</option>
+                    <option value="guest">게스트</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">가입 완료</button>
+        </form>
+    </div>
+
+    <canvas id="fireworksCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('fireworksCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function createParticle(x, y) {
+            const particle = {
+                x: x,
+                y: y,
+                size: random(2, 5),
+                speedX: random(-5, 5),
+                speedY: random(-5, 5),
+                color: 'rgba(255, 255, 255, 1)',
+                opacity: 1,
+                decay: random(0.01, 0.03)
+            };
+            particles.push(particle);
+        }
+
+        function updateParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.opacity -= p.decay;
+
+                if (p.opacity <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const p of particles) {
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.opacity;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+        }
+
+        function animate() {
+            updateParticles();
+            drawParticles();
+            requestAnimationFrame(animate);
+        }
+
+        canvas.addEventListener('click', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            for (let i = 0; i < 100; i++) {
+                createParticle(x, y);
+            }
+        });
+
+        animate();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(to right, rgb(199, 0, 0), rgb(247, 247, 1));
+        }
+        .gradient-background {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+        }
+        p{
+            background-color: red;
+            color: blue;
+            /* text 디자인 */
+            letter-spacing: 10px;
+            word-spacing: 20px;            
+        }
+
+        #id1{
+            background-color: blue;
+            color: red;
+        }
+
+        .italic{
+            font-style: italic;
+        }
+        .bigtext{
+            font-size: 50px;
+        }
+        .smalltext{
+            font-size: 10px;
+        }
+
+        #vwvh{
+                /* 높이에 대해 1% */
+            font-size: 5vh;
+                /* 너비에 대해 1% */
+            font-size: 5vw;
+        }
+
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <h2>CSS 기본 문법</h2>
+    <p >요소 선택자 적용</p>
+    <p id="id1">id 선택자는 태그 선택자보다 우선해서 적용</p>
+
+    <p>중첩 클래스 선택자 적용</p>
+    <p class="italic bigtext">클래스 선택자 적용 : font style과 size 중첩 적용1</p>
+    <p class="italic smalltext">클래스 선택자 적용 : font style과 size 중첩 적용2</p>
+
+    <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">rockstar</p>
+
+    <!-- 
+    em : 부모 요소에 대해 배수, 
+    precent : 부모요소에 대해 퍼센트 -->
+
+    <div style="font-size: 20px;"> 
+        요긴 부모text다.
+        <div  style="font-size: 1.5em;">자식은 text는 부모 글꼴의 1.5배</div>
+
+    </div>
+
+    <div style="font-size: 20px;">
+        요긴 부모text
+        <div style="font-size: 150%;"> 지는 자식인디요
+
+        </div>
+    </div>
+
+    <div style="border: 5px solid black; 
+    padding: 10px; 
+    margin : auto;
+    text-align: center;
+    place-content: center;
+    width: 500px; height: 200px;">
+        margin, border, padding을 가진 요소
+    </div>
+
+<br>
+
+    <table>
+        <caption>table</caption>
+        <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+        </tr>
+    </table>
+
+</body>
+</html>

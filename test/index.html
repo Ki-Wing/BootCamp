@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>짭무 쇼핑몰</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+    @keyframes blink-effect {
+    50% {
+        opacity: 0;
+    }
+    }
+
+    .blink {
+    animation: blink-effect 1s step-end infinite;
+
+    .animated-title {font-size:60px; font-family:'Raleway',Sans-serif; font-weight:300; position: relative; width: 100%;max-width:100%; height: auto; padding:100px 0; overflow-x: hidden; overflow-y: hidden; }
+    .animated-title .track {position: absolute; white-space: nowrap;will-change: transform;animation: marquee 60s linear infinite; }
+    @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+    }
+    @media (hover: hover) and (min-width: 700px){
+    .animated-title .content {-webkit-transform: translateY(calc(100% - 8rem)); transform: translateY(calc(100% - 8rem));}
+        }
+    }
+
+    </style>
+</head>
+<body style="background-color: orange;">
+    <br>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#">짭무핑</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">상품</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">카테고리</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">문의</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">로그인</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 " style="margin-top: 10%;">짭무핑에 오신 것을 환영합니다!</h1>
+            <p class="lead track">저렴한 가격에 다양한 상품을 만나보세요.</p>
+            <a href="#" class="btn btn-primary btn-lg">지금 쇼핑하기</a>
+        </div>
+    </div>
+
+    <!-- Advertisement Section -->
+    <div class="container mt-5">
+        <div class="advertisement">
+            <h2 class="text-red text-center blinking-text" style="color: blue; background-color: orangered; padding: 5%;"><a class="blink">지금 특별 할인 중! 놓치지 마세요!</a></h2>
+        </div>
+    </div>
+
+    <!-- Product Section -->
+    <div class="container mt-5">
+        <h2 class="text-center">인기 상품</h2>
+        <div class="row" id="product-list">
+            <!-- Product Card Template -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start mt-5">
+        <div class="container p-4">
+            <p>© 2023 짭무 쇼핑몰. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
