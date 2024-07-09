@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CallBack Hell</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>
+    function callBackhell(){
+
+    // 전체는 비동긴데 안에서는 동기임
+        $(document).ready(function(){
+            $.ajax({
+                url: "https://jsonplaceholder.typicode.com/posts/1",
+                type: 'GET',
+                dataType: 'json',   //url에서 주는 data가 json이라는 뜻뜻
+                success: function(a){
+                    console.log("a: " + a);
+                    $.ajax({
+                        url: "https://jsonplaceholder.typicode.com/posts/1",
+                        type: 'GET',
+                        dataType: 'json',   //url에서 주는 data가 json이라는 뜻뜻
+                        success: function(b){
+                            console.log("b: " + b);
+                            $.ajax({
+                                url: "https://jsonplaceholder.typicode.com/posts/1",
+                                type: 'GET',
+                                dataType: 'json',   //url에서 주는 data가 json이라는 뜻뜻
+                                success: function(c){
+                                    console.log("c: " + c);
+                                },
+                                error: function(){
+                                
+                                }
+                            })
+                        },
+                        error: function(){
+                
+                        }
+                    })
+                },
+                error: function(){
+                
+                }
+            })   
+        });
+}
+    callBackhell();
+    console.log("힝");
+</script>
+
+</body>
+</html>

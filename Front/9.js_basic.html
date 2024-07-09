@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showOb(){
+            let person = {name:"test", age: 20, email:"test@naver.com"};
+            // 접근방법1
+            console.log("이름은" + person.name + " 나이는 " + person.age + " 이메일 " + person.email);
+            person.name = "kim"; // 객체 접근 후 변경
+            // 접근방법2 : person['name']
+            console.log("이름은 " + person['name']);
+        }
+        
+        function showOb2(){
+            // object.keys : 객체의 키를 배열로 반환
+            let person1 = [
+                {name:"test1", age: 20, email:"test1@naver.com"},
+                {name:"test2", age: 22, email:"test2@naver.com"}
+            ];
+            person1.forEach(p => {
+                Object.keys(p).forEach(key => {
+                    console.log(key + ": " + p[key]);
+                });
+            });
+        }
+
+        function makeOb(){
+            //방법1. 리터럴 방식으로 값 세팅
+                // 위랑 동일
+            //방법2. 동적으로 키,값 추가
+            let myobject = {};
+            myobject.name = 'test';
+            myobject.email = 'test@naver.com';
+            myobject['passwd'] = '1234';
+            console.log(myobject);
+
+            //위 객체의 value만 console로 출력
+            Object.keys(myobject).forEach(key => {
+                console.log(myobject[key]);
+            });
+
+            //name(key) : test(value)...
+            // 백틱을 활용한 템플릿 리터럴
+            let mySt = "";
+            Object.keys(myobject).forEach(a => {
+                mySt += `${a}(key): ${myobject[a]}(value) <br>`;
+            });
+            document.getElementById("result").innerHTML = mySt;
+
+            const name = 'testt';
+            const age = 30;
+            const per1 = {name:name, age:age}
+
+            //단축 속성명 방법
+            //속성명을 변수명과 동일하게 사용할때 간편하게 객체 생성하는 방식
+            const per2 = {name, age};
+
+            const ob1 = {key:"val1"}
+            const ob2 = {ob1};
+            console.log(ob2);
+
+            //스프레드 문법
+            const ob3 = {a:1, b:2};
+            const ob4 = {...ob3, c:3} //배열에서도 사용 가능
+            console.log(ob4);
+        }
+
+        function makeArr(){
+            let fruits=["사과", "포도", "바나나"];
+            fruits.push("복숭아");
+            console.log(fruits);
+
+            //pop: 마지막 요소 제거
+            fruits.pop();
+            console.log(fruits);
+
+            //배열 접근 [index]
+            console.log(fruits[1]);
+
+            //배열 요소 수정
+            fruits[0] = "백도복숭아";
+            console.log(fruits);
+
+            //for문 기본 예시
+            for(let i=0;i<fruits.length; i++){
+                console.log(fruits[i]);
+            }
+
+            //for-each
+            for(const f of fruits){   //요소를 꺼냄
+                console.log(f);
+            }
+
+            fruits.forEach(a => console.log(a));
+            fruits.forEach((a, b) => console.log('a : ' + a + ' b : ' + b));
+
+            //filter 메서드
+            const num1 = [1,2,3,4,5];
+            //짝수인 요소들만 뽑아 새로운 배열 생성 후 출력
+            const evenNumbers = num1.filter(f => f % 2 === 0);
+            evenNumbers.forEach(n => console.log(n));
+
+
+            //map 메서드// 짝수인 제곱값을 담는 새로운 배열
+            const num2 = evenNumbers.map(n => n * n);
+            console.log("짝수의 제곱값:", num2);
+
+            console.log(num1.find(n=>n%2==0));
+        
+            //스프레드 문법
+            const num3 = [...num1,7,8,9];
+            console.log(num3)
+        }
+
+
+        function find_practice(){
+            let pep = [{name:"test1", age:20},{name:"test2", age:35},{name:"test3", age:30}]
+            // 나이가 30대 이상
+            let n_pep = pep.filter(f => f.age >= 30);
+            console.log(n_pep)
+
+            // 기존 객체에 모두 email:test@naver.com의 한쌍 값 추가
+             const n_pep2 = pep.map(n => {return {...n, email:"test@test.com"} });
+
+             const arr1 = {1:"name1", 2:"name2"}
+             const arr2 = [{id:1,name:"name1",email:"email1"},{id:2,name:"name2",email:"email2"},{id:3,name:"name3",email:"email3"}]
+
+             //arr1에 있는 key 값이 arr2에 id값으로 있다면, 해당 arr2의 요소로 이루어진 새로운 객체 생성
+            const arr4 = Object.keys(arr1).map(a=>{
+                const p1 = arr2.find(b=>b.id==a);
+                return p1
+            })
+            console.log(arr4);
+
+
+            const arr3={};
+            arr2.forEach(a => {
+            if (a.id in arr1) {
+                arr3[a.id] = a;}
+            });
+
+            console.log(arr3);
+}
+
+    function convert(){
+        // let numStr="10";
+        // let str = "hi";
+        // let num1 = Number(numStr);
+        // console.log(num1); //Not a Number(NAN)
+        // console.log(typeof num1);
+        // num1 =String(numStr);
+        // //typeof : 변수의 타입 리턴
+        // console.log(typeof num1);
+
+        // let num2 = Number(str);
+        // console.log(num2);
+
+        //== ===(타입까지체크)
+        console.log(10=='10'); //true
+        console.log(10==='10'); //false
+
+        //undefined, null 비교
+        let output1;  //undefined
+        let output2=null;
+
+        console.log(typeof output1);
+        console.log(typeof output2);
+        console.log(output1 == output2); //true
+        console.log(output1 === output2); //false
+
+    }
+
+    </script>
+</head>
+<body>
+    <h2>js객체</h2>
+    <button onclick="showOb()">객체 조회</button>
+    <button onclick="showOb2()">객체 배열 조회</button>
+    <button onclick="makeOb()">객체 생성</button>
+    <p id="result">반환 결과</p>
+
+    <button onclick="makeArr()">배열 생성/조회</button>
+    <button onclick="find_practice()">filter/map/find_practice</button>
+    <button onclick="convert()">형변환</button>
+
+</body>
+</html>

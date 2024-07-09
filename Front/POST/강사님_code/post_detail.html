@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 서비스</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        async function serverDate() {
+            const postId = document.getElementById('postId').value;
+            const response = await axios.get("http://localhost:8081/post/detail/" + postId);
+            const data = response.data;
+
+            document.getElementById('id').innerHTML = data.id;
+            document.getElementById('title').innerHTML = data.title;
+            document.getElementById('contents').innerHTML = data.contents;
+
+        }
+    </script>
+
+</head>
+<body>
+    <object style="width:100%;" data="../../common/header.html" type="text/html"></object>
+    <div class="container">
+        <div class="page-header"><h3>게시글 상세조회</h3></div> 
+        <input type="text" id="postId" placeholder="ID를 입력해주세요">
+        <button class="btn btn-primary" onclick="serverDate()">조회</button>
+        <table class="table">
+            <tr><td>Id</td><td id="id"></td></tr>
+            <tr><td>Title</td><td id="title"></td></tr>
+            <tr><td>Contents</td><td id="contents"></td></tr>
+        </table>        
+    </div>
+
+</body>
+</html>

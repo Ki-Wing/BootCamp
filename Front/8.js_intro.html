@@ -4,11 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>js intro</title>
+    <script>
+        function VariableConsole1(){
+            console.log("hi");
+            // var, let, const 셋중에 하나 키워드 사용
+            // 객체는 중괄호, 배열은 대괄호
+            var a = 10;
+            var b = "20";
+            var c = 30;
+            console.log(a+b);
+            console.log(a+c);
+        }
+
+        function VariableConsole2(){
+            console.log("hi");
+             var arr = [10,"20",30,"50"];
+             arr.push(50);
+            //  for(var i=0; i< arr.length; i++){
+            //     console.log(arr[i]);
+            //  }
+             arr.forEach(a => console.log(a));
+
+             var arr2 = [10,20,30,40];
+             var sum = 0
+             for(var i=0; i< arr2.length; i++){
+                sum += arr2[i]
+             }
+             console.log(sum);
+            //  확인 버튼 누르기 전까지 이후 코드 실행 x // 화면 상에서도 동작 x
+            alert("total" + sum);
+            document.write("total" + sum); // 사용 지양-> 아예 창이 달라짐
+        }
+
+        function VariableConsole3(){
+            var arr2 = [10,20,function test(){console.log("hi")}];
+            arr2[2]();
+        }
+
+
+
+        function varExample(){
+            //var: 같은 변수명에 재선언과 재할당 가능
+            var a = 10;
+            var a = 20;
+            console.log(a);
+        }
+        function letExample(){
+            //let: 같은변수명에 재할당만 가능(재선언 불가능)
+            let a = 10;
+            // let a = 20; 불가능
+            a = 20;
+        }
+        function constExample(){
+            //const : 재선언, 제힐딩 불가능
+            const a = 10;
+            // a = 10;
+            // const a =10;
+        }
+
+
+
+        function changeTextById(){
+            document.getElementById("change1").innerHTML = "변경완료";
+            document.getElementById("change1").style.fontSize = "20px";
+
+        }
+
+        function changeTextByClassName(){
+            // let classname = document.getElementById("className")    
+            let arr = document.getElementsByClassName("change2")
+            for(let i=0; i< arr.length; i++){
+                arr[i].innerHTML = "변경완료";
+                arr[i].style.color = "red";
+
+             }
+        }
+
+        function changeTextByTag(){
+            let arr = document.querySelectorAll("[tag='change3']");
+            arr.forEach(e => {
+                e.innerHTML = "변경완료";
+                e.style.fontSize = "20px";
+                e.style.color = "red";
+
+            });
+        }
+
+        // function changeTextByTag(){
+        //     let elements = document.getElementsByTagName("h3");
+        //     for (let i = 0; i < elements.length; i++) {
+        //         elements[i].innerHTML = "변경완료";
+        //         elements[i].style.fontSize = "20px";
+        //     }
+        // }
+    </script>
+</head>
+
+    </script>
 </head>
 <body>
+    <h2>Java Script 변수와 출력</h2>
+    <button onclick="VariableConsole1()">console에 변수 출력하기1</button>
+    <button onclick="VariableConsole2()">console에 변수 출력하기2</button>
+    <button onclick="VariableConsole3()">console에 변수 출력하기3</button>
 
     
+    <h2>Java Script 변수 키워드</h2>
+    <button onclick="varExample()">var 예제</button>
+    <button onclick="letExample()">let 예제</button>
+    <button onclick="constExample()">const 예제</button>
 
-    
+
+    <h2>tag/class/id 선택</h2>
+    <button onclick="changeTextById()">id 선택 후 change</button>
+    <p id="change1">변경대상</p>
+    <button onclick="changeTextByClassName()">Class 선택 후 change</button>
+    <p class="change2">변경대상</p>
+    <p class="change2">변경대상</p>
+    <button onclick="changeTextByTag()">Tag 선택 후 change</button>
+    <h3 tag="change3">변경대상</h3>
+    <h3 tag="change3">변경대상</h3>
+    <!-- <h3>변경대상</h3>
+    <h3>변경대상</h3> -->
+
 </body>
 </html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js function</title>
+
+<style>
+    
+    body{
+        background: linear-gradient(to right, #ff0073 146px, #d4ff00 546px);
+    }
+
+    h2{
+        font-style: italic;
+        background: linear-gradient(to right top, #743dff, #000000);
+        color: transparent;
+        -webkit-background-clip: text;
+
+        white-space: nowrap;
+        overflow: hidden;
+        animation: flowText 15s linear infinite;
+    }
+
+    @keyframes flowText {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+</style>
+
+    <script>
+        function hi(){
+            alert('hi')
+        }
+
+        const variablefunction1 = function(){
+            console.log('hi variable function')
+        }
+
+        // 실행문이 1줄일 경우 중괄호 생략 가능
+        const variablefunction2 = () => {    //function이라 안쓰고 걍 => 이렇게 해도 ㄱㅊ
+            console.log('hi variable function')
+        }
+
+        const makeString1 = () => {
+            return "hihi";
+        }
+        
+        const makeString2 = () => {
+             "not hihi";
+        }
+
+        function returnFunction1(){
+            console.log(makeString1())
+            console.log(makeString2())
+        }
+
+        function paramFunction1(a,b){
+            let total = a+b;
+            console.log(total)
+        }
+
+        function paramFunction2(name="홍홍"){      // 값을 안넣었을때 default 홍홍임
+            console.log(name)
+        }
+
+        function paramFunction3(...num){  
+
+            // for을 쓰면 total을 계속 갱신하니까 const가 아닌 let을 사용해야함.
+            const total = num.reduce((a,b)=>a+b,0);
+            console.log(num)
+            console.log("total: " + total)
+        }
+
+        function functionWithException(){
+            // case1 : 없는 함수 실행 또는 없는 변수값 참조시 예외 발생
+            try{
+                const result = example();
+                console.log(result);
+            }catch(e){
+                console.log(e);
+                console.log(e.message);
+            }
+            console.log('이후 코드 실행')
+
+            // case2 : 서버 요청 이후 없는 데이터 값 참조시 예외 발생
+            // const respone = axios.get('https://naver.com')
+            const respone = {data1:{id:1, name:'test'}};
+            console.log(respone)
+            console.log(respone.data.id) //undefined.. exception 터짐
+            console.log(respone.data1.id)
+        }
+
+        // const createPerson = (name, age) => {return{name,age}}
+        // function createPerson(name, age) {
+        //     return {
+        //         name: name,
+        //         age: age,
+        //         printPerson: function() {
+        //             return '이름: ' + this.name + ' 나이: ' + this.age;
+                        // return `이름: ${this.name} 나이: ${this.age}`;
+        //         }
+        //     };
+        // }
+
+        const createPerson = (name, age) => ({
+            name,age,
+            printPerson(){
+                // this : 객체 자기 자신 의미
+                return  '이름: ' + this.name + ' 나이: ' + this.age;
+            }
+
+// 화살표 함수
+    // this: 화살표 함수는 자신의 this를 가지지 않으며, 상위 스코프의 this를 캡처
+    // 문제점: 객체의 메서드로 사용하면 this가 객체를 참조하지 않고, 상위 스코프의 this를 참조하여 undefined가 될 수 있음
+// 일반 함수
+    // this: 일반 함수는 호출된 객체의 자신의 this를 가짐
+    // 장점: 객체의 메서드로 사용하면 this가 해당 객체를 정확히 참조
+
+        });
+
+        function showPerson() {
+            const person = createPerson('예핑핑', 20);
+            // this를 붙이면 예핑핑1 출력, 아니면 예핑핑
+            person.name = '예핑핑1'
+            console.log(person.printPerson());
+        }
+
+
+        function reload(){
+            window.location.reload();  // 내장 함수
+        }
+
+        function locationmove(){
+            window.location.href="https://www.naver.com";
+        }
+
+        function clickevent(){
+            const button = document.getElementById("button1")
+            if(button){
+                // 함수를 매개변수로 던져서 하면 콜백함수
+                // click 이라는 약속된 문자열을 동작의 트리거로 사용
+                // 해당 버튼이 클릭될때 매개변수로 주어지는 함수가 실행
+                button.addEventListener('click', () => alert('hihi gogo'));
+            }
+        }
+
+
+        function scrollevent(){
+            window.addEventListener('scroll', () => {
+                // alert('hihi world!');
+                console.log('hihi world!');
+
+            });
+        }
+
+        //div안에 input박스 들어가는거임
+        function AddItem(){
+            let button = documetn.getElementById("target")
+            target.innerHTML += "<input type='text'><br>"
+        }
+    
+
+    </script>
+</head>
+<body>
+    <h2>js 기본 함수 호출</h2>
+    <button onclick="hi()">함수 호출 basic</button>
+    <button onclick="variablefunction1()">변수 함수 호출 basic1</button>
+    <button onclick="variablefunction2()">변수 함수 호출 basic2</button>
+    <button onclick="returnFunction1()">리턴 함수 호출1</button>
+    <button onclick="paramFunction1(1,'hong')">매개변수 있는 함수 호출1</button>
+    <button onclick="paramFunction2('힝힝')">매개변수 있는 함수 호출2</button> 
+    <button onclick="paramFunction3(1,2,3,4)">매개변수 있는 함수 호출3</button> 
+    <button onclick="paramFunction3(1,2,3,4,5,6)">매개변수 있는 함수 호출3</button> 
+
+    <h2>예외 처리 예제</h2>
+    <button onclick="functionWithException()">예외처리 함수 호출</button>
+    
+    <h2>객체 함수 호출 예제</h2>
+    <button onclick="showPerson()">사람객체 생성</button>
+
+    <h2>window 객체 활용</h2>
+    <button onclick="reload()">화면 새로고침</button>
+    <button onclick="locationmove()">화면이동</button>
+
+    <h2>Event Listenr 활용</h2>
+    <button onclick="clickevent()">클릭 시 이벤트 리스너 동작</button>
+   <button id="button1">버튼1</button>  <!--위 버튼 누르고 눌러야 이벤트 발생-->
+    <button onclick="scrollevent()">스크롤링 시 이벤트 리스너 동작</button>
+
+    <h2>html 요소 동적으로 생성</h2>
+    <button onclick="AddItem()">항목 추가</button>  
+    <div id="target"></div>
+</body>
+</html>

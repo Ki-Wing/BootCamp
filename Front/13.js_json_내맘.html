@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json 직렬화/역직렬화 실습</title>
+    <style>
+        table, th, td {
+            border: 1px solid rgb(97, 0, 254);
+            border-collapse: collapse;
+            padding: 8px;
+            margin: auto;
+        }
+    </style>
+
+    <script>
+        window.onload = function() {
+            // 객체배열 JSON 문자열
+            const jsonTxt2 = '[{"name":"Alice","age":25,"score":85},{"name":"Bob","age":28,"score":92},{"name":"Charlie","age":32,"score":88}]';
+            
+            // JSON 역직렬화 (파싱)
+            const obj2 = JSON.parse(jsonTxt2);
+
+            const nameRow = document.getElementById('name');
+            const ageRow = document.getElementById('age');
+            const scoreRow = document.getElementById('score');
+
+            let nameHTML = '<td>name</td>';
+            let ageHTML = '<td>age</td>';
+            let scoreHTML = '<td>score</td>';
+
+
+            obj2.forEach(person => {
+                nameHTML += `<td>${person.name}</td>`;
+                ageHTML += `<td>${person.age}</td>`;
+                scoreHTML += `<td>${person.score}</td>`;
+            });
+
+            nameRow.innerHTML = nameHTML;
+            ageRow.innerHTML = ageHTML;
+            scoreRow.innerHTML = scoreHTML;
+
+
+            //json 직렬화
+            const jsonTxt3 = Json.stringify(obj2);
+            console.log(jsonTxt3);
+        }
+    </script>
+</head>
+<body>
+    <h2>JSON 데이터를 테이블에 표시 (동적)</h2>
+
+    <table>
+        <tr id="name"></tr>
+        <tr id="age"></tr>
+        <tr id="score"></tr>
+    </table>
+</body>
+</html>

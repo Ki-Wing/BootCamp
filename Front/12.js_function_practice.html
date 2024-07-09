@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+    <style>
+        body{
+            background-image: url('숫자.jpg');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+
+        h2{
+            font-style: italic;
+            background: linear-gradient(to right top, #895cfa, #ff0000);
+            color: transparent;
+            -webkit-background-clip: text;
+        }
+
+        input{
+            background-color: rgb(130, 84, 247);
+            color: rgb(255, 180, 216);
+            font-weight: bolder;
+        }
+
+        select{
+            background-color: rgb(130, 84, 247);
+            color: #ffcaf9;
+        }
+
+        button{
+            background-color: rgb(130, 84, 247);
+            color: rgb(255, 180, 216);
+        }
+
+        span{
+            color: #ff0000;
+            font-size: larger;
+            font-weight: bold;
+        }
+
+
+    </style>
+
+    <script>
+        function calculate() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const cc = document.getElementById('cal').value;
+            const result = 0;
+
+            if (cc === '덧셈') { 
+                result = a + b;
+            } else if (cc === '뺄셈') {
+                result = a - b;
+            } else if (cc === '곱셈') {
+                result = a * b;
+            } else if (cc === '나눗셈') {
+                result = a / b;
+            } else {
+                alert('잘못된 입력입니다.');
+                return;
+            }
+            document.getElementById('result').innerText = result;
+        }
+        
+    </script>
+</head>
+<body>
+    <div style="background-color: rgb(0, 221, 255);"><h2>계산기 프로그램 구현</h2></div>
+    <div>
+        <!-- 사용자로부터 사칙연산 선택 -->
+        <label for="cal">사칙연산</label>
+        <select id="cal">
+            <option value="덧셈">덧셈</option>
+            <option value="뺄셈">뺄셈</option>
+            <option value="곱셈">곱셈</option>
+            <option value="나눗셈">나눗셈</option>
+        </select>
+        <input type="text" id="a" placeholder="첫 번째 수">
+        <input type="text" id="b" placeholder="두 번째 수">
+
+        <button onclick="calculate()">계산 실행</button>
+    </div>
+    <br>
+    <div>결과값: <span id="result"></span></div>
+</body>
+</html>
+
